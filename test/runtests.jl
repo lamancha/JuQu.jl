@@ -271,25 +271,6 @@ const TEST_DB_PATH = joinpath(@__DIR__, "test.db")
         @test empty_guid_results isa DataFrame
     end
     
-    @testset "Legacy and Convenience Functions" begin
-        # Close current connection for testing openDB
-        close_database()
-        
-        # Test legacy openDB function
-        @test_nowarn openDB(TEST_DB_PATH)
-        
-        # Verify connection is established
-        conn = get_connection()
-        @test conn isa SQLite.DB
-        
-        # Test openDB with default path (should work from project root)
-        close_database()
-        @test_nowarn openDB()  # Default path should work
-        
-        # Reopen for cleanup
-        open_database(TEST_DB_PATH)
-    end
-    
     @testset "Error Handling and Edge Cases" begin
         # Test query execution with empty results
         empty_result = execute_query("SELECT * FROM experiments WHERE exp_id = -1")

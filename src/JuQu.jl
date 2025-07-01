@@ -288,19 +288,6 @@ module JuQu
         return execute_query(query)
     end
 
-    # =============================================================================
-    # CONVENIENCE FUNCTIONS
-    # =============================================================================
-
-    """
-        openDB(db_path::String="test/test.db")
-    
-    Legacy function - opens database with default path.
-    """
-    function openDB(db_path::String="test/test.db")
-        return open_database(db_path)
-    end
-
     # Export all public functions
     export open_database, close_database, get_connection, execute_query, execute_statement
     export get_all_experiments, get_experiment_by_id, get_experiments_by_name
